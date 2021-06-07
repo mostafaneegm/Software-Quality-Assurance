@@ -1,0 +1,50 @@
+package ManageProject_TestNG;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
+
+public class updateProjectProfile extends login {
+  @Test
+  public void f() throws InterruptedException {
+	   
+      //click on my profile 
+      driver.findElement(By.xpath("//*[@id=\"usrLoggedInUi\"]/label/a/span/span[3]")).click();
+      driver.findElement(By.xpath("//*[@id=\"usrLoggedInUi\"]/div/ul/li[2]/a")).click();
+      
+      //click on edit in project panel
+      driver.findElement(By.xpath("//*[@id=\"projectsHolder\"]/div/div[1]/div[1]/div/a/i")).click();
+      
+      // click on finished radio button
+      driver.findElement(By.xpath("//*[@id=\"modalDescription\"]/div/div/div[3]/div/div[2]/div[2]/label/span")).click();
+      
+      // select end year of the project
+      driver.findElement(By.xpath("//*[@id=\"endYearInputHolder\"]/div[1]/div/div[1]")).click();
+      driver.findElement(By.xpath("//*[@id=\"endYearInputHolder\"]/div[1]/div/div[2]/ul/li[1]/span/span")).click();
+     
+      // select end month of the project      
+      driver.findElement(By.xpath("//*[@id=\"endMonthInputHolder\"]/div[1]/div/div[1]")).click();
+      driver.findElement(By.xpath("//*[@id=\"endMonthInputHolder\"]/div[1]/div/div[2]/ul/li[3]/span/span")).click();
+      
+      // click on save btn
+      driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div[3]/div[2]/div/div[9]/div/div[2]/div/div/div/div/div/div/div[11]/div/div/button")).click();
+      
+      // stop the testing for 5 seconds until the page is refreshed
+     TimeUnit.SECONDS.sleep(5);
+     
+     // test if the update occurred   
+      String result =driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div[4]/div/div/p")).getText();
+       String expected ="Section updated successfully";
+    if( expected.equals(result)) {
+    	 System.out.println("Correct");
+
+    } 
+    else {System.out.println("Not Correct");
+    }
+  
+
+  
+	  
+  }
+}
